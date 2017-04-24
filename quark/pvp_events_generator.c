@@ -40,6 +40,7 @@
 
 #include "pvp_events_generator.h"
 #include "iq/pvp_events_iq.h"
+#include "lib/ble/pattern/ble_pattern.h"
 
 /* Client */
 static cfw_client_t *client = NULL;
@@ -50,6 +51,11 @@ static cfw_service_conn_t *sensor_service_conn = NULL;
 static sensor_service_t pvp_handle = NULL;
 
 static void (*init_done_callback)(void) = NULL;
+
+struct track_suitcase_events{
+ uint8_t total_pattern_square;
+}track_pattern_events_debug = {0};
+
 
 /* handle for sensors data */
 static void handle_sensor_subscribe_data(struct cfw_message *msg)
@@ -67,6 +73,11 @@ static void handle_sensor_subscribe_data(struct cfw_message *msg)
 			(struct kb_result *)p_data_header->data;
 		pr_info(LOG_MODULE_MAIN, "KB classifier=%d", p->nClassLabel);
 		pvp_event_push_classifier(p->nClassLabel);
+		if (p->nClassLabel==2)
+		{
+			track_pattern_events_debug.total_pattern_square++;
+			ble_pattern_update(track_pattern_events_debug.total_pattern_square,PATTERN_SQUARE);
+		}
 		break;
 	}
 }
