@@ -34,13 +34,13 @@
 #include "infra/log.h"
 
 #include "cfw/cfw.h"
+#include "lib/ble/pattern/ble_pattern.h"
 
 /* Main sensors API */
 #include "services/sensor_service/sensor_service.h"
 
 #include "pvp_events_generator.h"
 #include "iq/pvp_events_iq.h"
-#include "lib/ble/pattern/ble_pattern.h"
 
 /* Client */
 static cfw_client_t *client = NULL;
@@ -52,10 +52,9 @@ static sensor_service_t pvp_handle = NULL;
 
 static void (*init_done_callback)(void) = NULL;
 
-struct track_suitcase_events{
+struct track_pattern_events{
  uint8_t total_pattern_square;
 }track_pattern_events_debug = {0};
-
 
 /* handle for sensors data */
 static void handle_sensor_subscribe_data(struct cfw_message *msg)

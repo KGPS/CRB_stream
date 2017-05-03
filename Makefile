@@ -48,7 +48,7 @@ VERSION_MINOR  := $(WEARABLE_DSW_VERSION_MINOR)
 VERSION_PATCH  := $(WEARABLE_DSW_VERSION_PATCH)
 
 include $(T)/internal/build/project.mk
-input =  $(PROJECT_PATH)/../../../framework/src/lib/ble/ble_app_CRB_hereo_enabler.c
+input =  $(PROJECT_PATH)/../../../framework/src/lib/ble/ble_app_CRB_stream.c
 output = $(PROJECT_PATH)/../../../framework/src/lib/ble/ble_app.c
 $(shell cp $(input)  $(output))
 

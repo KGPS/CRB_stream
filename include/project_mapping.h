@@ -31,3 +31,13 @@
 
 #undef NUMBER_OF_PARTITIONS
 #define NUMBER_OF_PARTITIONS                    8
+#undef QUARK_RAM_SIZE
+#define QUARK_RAM_SIZE  49  /* 49k */
+ 
+/* ARC RAM start increased accordingly */
+#undef ARC_RAM_START_ADDR
+#define ARC_RAM_START_ADDR (QUARK_RAM_START_ADDR + QUARK_RAM_SIZE * 1024)
+ 
+/* ARC RAM SIZE increased accordingly */
+#undef CONFIG_QUARK_SE_ARC_RAM_SIZE
+#define CONFIG_QUARK_SE_ARC_RAM_SIZE 28   /* 28K */
